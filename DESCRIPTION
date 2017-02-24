@@ -1,0 +1,24 @@
+Package: ggdocumentation
+Title: Adds documentation to 'ggplot2' plots using grid objects
+Description: Allows users to document their 'ggplot2' plots following Edward Tufte's 
+	Principles of Analytical Design Principle 5: Documentation (from Tufte's book 
+	"Beautiful Evidence") by adding company logo (sponsor), author name, date 
+	produced, and data source. Also supports integrating 'ggthemes'.
+URL: https://github.com/joshuaadampoirier/ggdocumentation
+License: GPL (>= 2)
+Version: 1.0
+Authors@R: c(
+	person("Joshua", "Poirier", email = "josh.poirier@gmail.com", role = c("aut", "cre")
+	)
+Depends:
+	R (>= 3.3.2)
+Imports:
+	grid (>= 3.3.2)
+	ggplot2 (>= 2.2.1)
+	png (>= 0.1.7)
+Suggests:
+	ggthemes (>= 3.4.1)
+VignetteBuilder: knitr
+Collate:
+	'ggdocumentation.R'
+RoxygenNote: 6.0.1
