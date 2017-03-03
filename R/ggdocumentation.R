@@ -2,12 +2,13 @@ library(png)
 library(grid)
 library(ggplot2)
 
-source("themes.R")
+#source("themes.R")
 
 doc_plot <- function(d, fname, aut="", aut_tit="", dsrc="", theme="gray", ...) {
 
     t <- get_theme(theme, ...)
 
+    # ###################################################################################
     # Set up the layout for grid 
     w <- c(.01, .1, .01, .43, .01, .43, .01)
     h <- c(.93, .07)
@@ -16,6 +17,7 @@ doc_plot <- function(d, fname, aut="", aut_tit="", dsrc="", theme="gray", ...) {
     grid.newpage()
     pushViewport(viewport(layout = lo))
 
+    # ###################################################################################
     # background color of plot
     pushViewport(viewport(layout.pos.row=1, layout.pos.col=1:7))
     print(grid.draw(rectGrob(width=unit(.999, "npc"), 
@@ -32,13 +34,15 @@ doc_plot <- function(d, fname, aut="", aut_tit="", dsrc="", theme="gray", ...) {
     print(d, newpage=FALSE)
     popViewport()
     
+    # ###################################################################################
     # background color of documentation
     pushViewport(viewport(layout.pos.row=2, layout.pos.col=1:7))
     print(grid.draw(rectGrob(width=unit(.999, "npc"), 
                              height=unit(.999, "npc"), 
                              gp=gpar(fill=t$bg, col=t$bg))), newpage=FALSE)
     popViewport()
-        
+    
+    # ###################################################################################    
     # sponsor logo
     img <- readPNG(fname)
     img_o <- rasterGrob(img, height=unit(0.8, "npc"))
@@ -46,6 +50,7 @@ doc_plot <- function(d, fname, aut="", aut_tit="", dsrc="", theme="gray", ...) {
     print(grid.draw(img_o), newpage=FALSE)
     popViewport()
     
+    # ###################################################################################
     # aut = who did the work (eg. Charles Minard)
     # aut_tit = who's that? (eg. Inspector General of Bridges and Roads in retirement)
     if (aut != "") {
@@ -58,6 +63,7 @@ doc_plot <- function(d, fname, aut="", aut_tit="", dsrc="", theme="gray", ...) {
         popViewport()        
     }
 
+    # ###################################################################################
     # dsrc = what are the data sources (eg. M. M. Thiers and Jacob)
     # when was the work done? (eg. 20 Nov 1869)
     if (dsrc != "") {
@@ -69,6 +75,7 @@ doc_plot <- function(d, fname, aut="", aut_tit="", dsrc="", theme="gray", ...) {
         popViewport()        
     }
     
+    # ###################################################################################
     # borders
     if (!t$lty == "blank") {
     
@@ -96,17 +103,17 @@ doc_plot <- function(d, fname, aut="", aut_tit="", dsrc="", theme="gray", ...) {
     grid.draw(g)
 }
 
-library(ggthemes)
+# library(ggthemes)
 
 # Get the graph
-d <- ggplot(diamonds, aes(carat, price)) + theme_fivethirtyeight() +
-    xlim(0, 2) + 
-    stat_binhex(na.rm = TRUE) + 
-    facet_wrap(~ color, scales = "free_x")
-#d
-doc_plot(d,
-        fname=system.file("img", "Rlogo.png", package="png"),
-        aut="Joshua Poirier",
-        aut_tit="Data Scientist",
-        dsrc="My website",
-        theme="custom", bg="purple", fg="yellow")
+# d <- ggplot(diamonds, aes(carat, price)) + theme_fivethirtyeight() +
+#     xlim(0, 2) + 
+#     stat_binhex(na.rm = TRUE) + 
+#     facet_wrap(~ color, scales = "free_x")
+# d
+# doc_plot(d,
+#         fname=system.file("img", "Rlogo.png", package="png"),
+#         aut="Joshua Poirier",
+#         aut_tit="Data Scientist",
+#         dsrc="My website",
+#         theme="custom", bg="purple", fg="yellow")
