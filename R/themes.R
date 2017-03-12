@@ -1,3 +1,28 @@
+#' Retrieve a list of thematic elements
+#' 
+#' This function retrieves a list of thematic elements to be used by the
+#' \link{doc_plot} function. The elements correspond to either a given theme
+#' (such as from the \pkg{ggplot2} or \pkg{ggthemes} packages) or a custom theme
+#' with relevant parameters also given.
+#' 
+#' @param theme \code{character}. Theme from the \pkg{ggplot2} or \pkg{ggthemes}
+#'   packages. Defaults to 'gray'.
+#' @inheritParams ggthemes::theme_economist_white
+#' @inheritParams ggthemes::theme_hc
+#' @inheritParams ggthemes::theme_pander
+#' @inheritParams ggthemes::theme_solarized
+#' @inheritParams ggthemes::theme_stata
+#' @inheritParams ggthemes::theme_tufte
+#' @inheritParams ggthemes::theme_wsj
+#' @param bg \code{character}. Background color for documentation.
+#' @param fg \code{character}. Foreground/font color.
+#' @param cex \code{numeric}. Font size multiplier.
+#' @param fill \code{character}. Background color for plot.
+#' @param col \code{character}. Border color.
+#' @param lwd \code{numeric}. Border line width.
+#' @param lty \code{character}, \code{numeric}. Border line type. Accepts 
+#'   numbers 0, 1, 2, 3, 4, 5, 6 or characters "blank", "solid", "dashed",
+#'   "dotted", "dotdash", "longdash", or "twodash".
 get_theme <- function(
                       # default theme
                       theme="gray",

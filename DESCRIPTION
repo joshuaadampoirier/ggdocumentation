@@ -7,7 +7,8 @@ Description: Allows users to document their 'ggplot2' plots following Edward Tuf
 URL: https://github.com/joshuaadampoirier/ggdocumentation
 License: GPL (>= 2)
 Version: 1.0
-Author: Joshua Poirier <josh.poirier@gmail.com>
+Authors@R: c(person("Joshua", "Poirier", role = c("aut", "cre"),
+    email = "josh.poirier@gmail.com"))
 Depends:
     R (>= 3.3.2)
 Imports:
@@ -20,5 +21,7 @@ Suggests:
 VignetteBuilder: knitr
 Collate:
     'ggdocumentation.R'
+    'doc_plot.R'
+    'data.R'
     'themes.R'
 RoxygenNote: 6.0.1
