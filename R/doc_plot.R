@@ -69,7 +69,13 @@ doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, 
     # sponsor (logo if 'img_sponsor' given; 'sponsor' as text otherwise)
     if (img_sponsor != "") {
         img_f <- readPNG(img_sponsor)
-        img_o <- rasterGrob(img_f, height=unit(0.8, "npc"))        
+        
+        if (dim(img_f)[2] > dim(img_f[1])) {
+            img_o <- rasterGrob(img_f, width=unit(0.8, "npc"))        
+        } else {
+            img_o <- rasterGrob(img_f, height=unit(0.8, "npc"))            
+        }
+        
     } else {
         img_o <- textGrob(sponsor, just=0,
                           x=unit(sum(w[1]), "npc"),
