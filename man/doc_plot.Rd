@@ -46,34 +46,3 @@ data sources to annotate ggplot2 plots. Documentation is one of the
 principles of analytical design according to Edward Tufte's "Beautiful 
 Evidence".
 }
-\examples{
-library("ggplot2")
-library("ggthemes")
-library("ggdocumentation")
-
-# Use doc_plot to add documentation to a plot in fivethirtyeight styling
-# ###########################################################################
-
-# build ggplot2 object using ggthemes' theme_fivethirtyeight()
-g <- ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Widht, col=Species)) +
-     labs(title="Iris data using 'ggdocumentation'!") +
-     scale_color_fivethirtyeight() +
-     theme_fivethirtyeight() +
-     geom_point()
-     
-# prep graphics device to save as png file
-png(filename="figures/iris_fivethirtyeight.png",
-    width=1100, height=800, units="px")
-    
-# add the documentation
-d <- doc_plot(g,
-              author="Joshua Poirier",
-              data_source="Source: Fisher, 1936",
-              img_sponsor="figures/mvp-logo.png",
-              theme="fivethirtyeight",
-              base_size=16)
-
-# save to file!
-print(d)
-dev.off()
-}

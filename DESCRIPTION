@@ -22,6 +22,5 @@ VignetteBuilder: knitr
 Collate:
     'ggdocumentation.R'
     'doc_plot.R'
-    'data.R'
     'themes.R'
 RoxygenNote: 6.0.1

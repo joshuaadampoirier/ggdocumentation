@@ -29,6 +29,7 @@ test_that("error thrown if ggplot object is not given for argument 'g'", {
 test_that("error thrown if character is not given for argument 'author'", {
     
     # build a ggplot plot - required argument for doc_plot
+    #load("data/diamonds.RData")
     g <- ggplot(diamonds, aes(x=carat, y=price)) + geom_point()
     
     # numeric
