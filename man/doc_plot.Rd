@@ -58,7 +58,7 @@ doc_plot(g,
 library("ggthemes")
 g <- ggplot(data=iris, aes(x=Sepal.Length, y=Petal.Length, col=Species)) +
      labs(title="Iris data using 'ggdocumentation'") +
-     scale_fivethirtyeight() +
+     scale_color_fivethirtyeight() +
      theme_fivethirtyeight() +
      geom_point()
      
