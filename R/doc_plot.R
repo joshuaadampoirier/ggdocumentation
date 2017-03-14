@@ -28,25 +28,11 @@
 #' @examples
 #' library("ggdocumentation")
 #' 
-#' # fivethirtyeight style plot with documentation
-#' # ###########################################################################
-#' 
-#' g <- ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, col=Species)) +
-#'   labs(title = "Iris data using 'ggdocumentation'!") +
-#'   scale_color_fivethirtyeight() +
-#'   theme_fivethirtyeight() +
-#'   geom_point()
-#' 
 #' png(filename="figures/iris_fivethirtyeight.png", 
 #'     width=1100, height=800, units="px")
 #'     
-#' d <- doc_plot(g,
-#'               author="Joshua Poirier",
-#'               data_source="Source: Fisher, 1936",
-#'               img_sponsor="figures/mvp-logo.png",
-#'               theme="fivethirtyeight",
-#'               base_size=16)
-#'               
+#' g <- qplot(Sepal.Length, Petal.Length, data=iris, color=Species)
+#' d <- doc_plot(g)
 #' plot_grid(d)
 doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, img_sponsor="", sponsor="", theme="gray", draw=TRUE, ...) {
     
