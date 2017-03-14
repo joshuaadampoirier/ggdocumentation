@@ -28,7 +28,7 @@
 #' library("ggplot2")
 #' library("ggdocumentation")
 #' 
-#' # build ggplot2 object
+#' # works with ggplot2 quick plots!
 #' g <- qplot(Sepal.Length, Petal.Length, data=iris, color=Species)
 #' 
 #' # add documentation - automatically draws to canvas
@@ -37,14 +37,14 @@
 #'          data_source="Fisher, 1936",
 #'          sponsor="MVP")
 #' 
-#' # build ggplot2 object
+#' # works with themes from ggthemes package!
+#' library("ggthemes")
 #' g <- ggplot(data=iris, aes(x=Sepal.Length, y=Petal.Length, col=Species)) +
 #'      labs(title="Iris data using 'ggdocumentation'") +
 #'      scale_fivethirtyeight() +
 #'      theme_fivethirtyeight() +
 #'      geom_point()
 #'      
-#' # set draw = FALSE, must draw to grid later
 #' doc_plot(g, 
 #'          author="Joshua Poirier",
 #'          author_title="Data Scientist",
@@ -54,16 +54,19 @@
 #'          theme="fivethirtyeight")
 #' 
 #' # works with faceted plots too!
-#' g <- ggplot(iris, aes(Sepal.Length, Petal.Length)) +
+#' g <- ggplot(iris, aes(Sepal.Length, Petal.Length, col=Species)) +
+#'      labs(title="Iris data using 'ggdocumentation'!") +
 #'      facet_grid(. ~ Species) +
 #'      scale_color_economist() +
-#'      theme_economist()
+#'      theme_economist(dkpanel=TRUE) +
+#'      geom_point()
 #' 
 #' doc_plot(g,
 #'          author="Joshua Poirier",
 #'          data_source="Fisher, 1936",
 #'          img_sponsor="figures/mvp-logo.png",
-#'          theme="economist")
+#'          theme="economist",
+#'          dkpanel=TRUE)
 doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, img_sponsor="", sponsor="", theme="gray", ...) {
     
     d <- ggplot(diamonds, aes(carat, price)) + 
