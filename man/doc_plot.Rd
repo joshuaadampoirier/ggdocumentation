@@ -68,6 +68,5 @@ d <- doc_plot(g,
               theme="fivethirtyeight",
               base_size=16)
               
-print(d)
-dev.off()
+plot_grid(d)
 }

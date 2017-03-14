@@ -47,8 +47,7 @@
 #'               theme="fivethirtyeight",
 #'               base_size=16)
 #'               
-#' print(d)
-#' dev.off()
+#' plot_grid(d)
 doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, img_sponsor="", sponsor="", theme="gray", draw=TRUE, ...) {
     
     validate_args(g, author, author_title, data_source, date, img_sponsor, sponsor, draw)
