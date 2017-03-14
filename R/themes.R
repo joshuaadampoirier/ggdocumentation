@@ -23,6 +23,7 @@
 #' @param lty \code{character}, \code{numeric}. Border line type. Accepts 
 #'   numbers 0, 1, 2, 3, 4, 5, 6 or characters "blank", "solid", "dashed",
 #'   "dotted", "dotdash", "longdash", or "twodash".
+#' @export
 get_theme <- function(
                       # default theme
                       theme="gray",

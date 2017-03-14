@@ -25,6 +25,7 @@
 #' @param ... Additional parameters to be passed into the get_theme() function. 
 #' @return The object to be plotted.
 #' @export
+#' @example inst/examples/ex-doc_plot.R
 
 doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, img_sponsor="", sponsor="", theme="gray", draw=TRUE, ...) {
     
