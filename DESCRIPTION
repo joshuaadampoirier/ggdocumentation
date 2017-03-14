@@ -10,8 +10,7 @@ Version: 1.0
 Authors@R: c(person("Joshua", "Poirier", role = c("aut", "cre"),
     email = "josh.poirier@gmail.com"))
 Depends:
-    R (>= 3.3.2)
-Imports:
+    R (>= 3.3.2),
     grid (>= 3.3.2),
     ggplot2 (>= 2.2.1),
     png (>= 0.1.7)
