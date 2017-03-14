@@ -46,13 +46,3 @@ data sources to annotate ggplot2 plots. Documentation is one of the
 principles of analytical design according to Edward Tufte's "Beautiful 
 Evidence".
 }
-\examples{
-library("ggdocumentation")
-
-png(filename="figures/iris_fivethirtyeight.png", 
-    width=1100, height=800, units="px")
-    
-g <- qplot(Sepal.Length, Petal.Length, data=iris, color=Species)
-d <- doc_plot(g)
-plot_grid(d)
-}

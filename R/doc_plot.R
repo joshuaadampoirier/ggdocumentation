@@ -25,15 +25,6 @@
 #' @param ... Additional parameters to be passed into the get_theme() function. 
 #' @return The object to be plotted.
 #' @export
-#' @examples
-#' library("ggdocumentation")
-#' 
-#' png(filename="figures/iris_fivethirtyeight.png", 
-#'     width=1100, height=800, units="px")
-#'     
-#' g <- qplot(Sepal.Length, Petal.Length, data=iris, color=Species)
-#' d <- doc_plot(g)
-#' plot_grid(d)
 doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, img_sponsor="", sponsor="", theme="gray", draw=TRUE, ...) {
     
     validate_args(g, author, author_title, data_source, date, img_sponsor, sponsor, draw)
