@@ -200,36 +200,6 @@ test_that("error thrown if character is not given for argument 'sponsor'", {
 })
 
 # ###################################################################################
-# ensure error is thrown if logical object is not given for argument 'draw'
-test_that("error thrown if logical is not given for argument 'draw'", {
-    
-    # build a ggplot plot - required argument for doc_plot
-    g <- ggplot(diamonds, aes(x=carat, y=price)) + geom_point()
-    
-    # numeric
-    expect_error(doc_plot(g, draw=3))
-    
-    # logical
-    expect_error(doc_plot(g, draw="TRUE"))
-    
-    # vector with multiple character objects
-    expect_error(doc_plot(g, draw=c("The scary internet!", "My local newspaper")))
-    
-    # data frame
-    expect_error(doc_plot(g, draw=data.frame(x=1, y=2)))
-    
-    # data frame with data source as character in it
-    expect_error(doc_plot(g, draw=data.frame(author="The scary internet!")))
-    
-    # ggplot object
-    expect_error(doc_plot(g, draw=g))
-    
-    # ggplot2 geom object
-    expect_error(doc_plot(g, draw=geom_point()))    
-    
-})
-
-# ###################################################################################
 # ensure valid arguments works properly!
 test_that("no errors for valid arguments!", {
     
@@ -237,7 +207,6 @@ test_that("no errors for valid arguments!", {
     g <- ggplot(diamonds, aes(x=carat, y=price)) + geom_point()
     
     expect_is(doc_plot(g), c("gTree", "grob", "gDesc"))
-    expect_is(doc_plot(g, draw=FALSE), c("gTree", "grob", "gDesc"))
     expect_is(doc_plot(g, 
                        img_sponsor=system.file("img", "Rlogo.png", package="png"),
                        author="Joshua Poirier",

@@ -5,8 +5,7 @@
 \title{Add documentation to ggplot2 plots}
 \usage{
 doc_plot(g, author = "", author_title = "", data_source = "",
-  date = FALSE, img_sponsor = "", sponsor = "", theme = "gray",
-  draw = TRUE, ...)
+  date = FALSE, img_sponsor = "", sponsor = "", theme = "gray", ...)
 }
 \arguments{
 \item{g}{A ggplot2 object to which documentation is to be added.}
@@ -32,9 +31,6 @@ if img_sponsor is used.}
 This value should correspond to themes from the ggplot2 or ggthemes 
 packages. It defaults to 'gray'.}
 
-\item{draw}{A logical object indicating whether or not to draw the plot. If
-FALSE the object to be plotted is returned without being drawn.}
-
 \item{...}{Additional parameters to be passed into the get_theme() function.}
 }
 \value{
@@ -47,27 +43,44 @@ principles of analytical design according to Edward Tufte's "Beautiful
 Evidence".
 }
 \examples{
+library("grid")
+library("ggplot2")
 library("ggdocumentation")
-    
-g <- qplot(Sepal.Length, Petal.Length, data=iris, color=Species)
-d <- doc_plot(g,
-              author="Joshua Poirier",
-              data_source="Fisher, 1936",
-              sponsor="MVP")
-plot_grid(d)
 
+# build ggplot2 object
+g <- qplot(Sepal.Length, Petal.Length, data=iris, color=Species)
+
+# add documentation - automatically draws to canvas
+doc_plot(g,
+         author="Joshua Poirier",
+         data_source="Fisher, 1936",
+         sponsor="MVP")
+
+# build ggplot2 object
 g <- ggplot(data=iris, aes(x=Sepal.Length, y=Petal.Length, col=Species)) +
      labs(title="Iris data using 'ggdocumentation'") +
      scale_fivethirtyeight() +
      theme_fivethirtyeight() +
      geom_point()
      
-d <- doc_plot(g, 
-              author="Joshua Poirier",
-              author_title="Data Scientist",
-              data_source="Fisher, 1936",
-              date=TRUE,
-              img_sponsor="figures/mvp-logo.png",
-              theme="fivethirtyeight")
-plot_grid(d)
+# set draw = FALSE, must draw to grid later
+doc_plot(g, 
+         author="Joshua Poirier",
+         author_title="Data Scientist",
+         data_source="Fisher, 1936",
+         date=TRUE,
+         img_sponsor="figures/mvp-logo.png",
+         theme="fivethirtyeight")
+
+# works with faceted plots too!
+g <- ggplot(iris, aes(Sepal.Length, Petal.Length)) +
+     facet_grid(. ~ Species) +
+     scale_color_economist() +
+     theme_economist()
+
+doc_plot(g,
+         author="Joshua Poirier",
+         data_source="Fisher, 1936",
+         img_sponsor="figures/mvp-logo.png",
+         theme="economist")
 }

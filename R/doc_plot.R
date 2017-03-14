@@ -20,38 +20,59 @@
 #' @param theme A character object indicating the theme for the documentation.
 #'   This value should correspond to themes from the ggplot2 or ggthemes 
 #'   packages. It defaults to 'gray'.
-#' @param draw A logical object indicating whether or not to draw the plot. If
-#'   FALSE the object to be plotted is returned without being drawn.
 #' @param ... Additional parameters to be passed into the get_theme() function. 
 #' @return The object to be plotted.
 #' @export
 #' @examples
+#' library("grid")
+#' library("ggplot2")
 #' library("ggdocumentation")
-#'     
-#' g <- qplot(Sepal.Length, Petal.Length, data=iris, color=Species)
-#' d <- doc_plot(g,
-#'               author="Joshua Poirier",
-#'               data_source="Fisher, 1936",
-#'               sponsor="MVP")
-#' plot_grid(d)
 #' 
+#' # build ggplot2 object
+#' g <- qplot(Sepal.Length, Petal.Length, data=iris, color=Species)
+#' 
+#' # add documentation - automatically draws to canvas
+#' doc_plot(g,
+#'          author="Joshua Poirier",
+#'          data_source="Fisher, 1936",
+#'          sponsor="MVP")
+#' 
+#' # build ggplot2 object
 #' g <- ggplot(data=iris, aes(x=Sepal.Length, y=Petal.Length, col=Species)) +
 #'      labs(title="Iris data using 'ggdocumentation'") +
 #'      scale_fivethirtyeight() +
 #'      theme_fivethirtyeight() +
 #'      geom_point()
 #'      
-#' d <- doc_plot(g, 
-#'               author="Joshua Poirier",
-#'               author_title="Data Scientist",
-#'               data_source="Fisher, 1936",
-#'               date=TRUE,
-#'               img_sponsor="figures/mvp-logo.png",
-#'               theme="fivethirtyeight")
-#' plot_grid(d)
-doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, img_sponsor="", sponsor="", theme="gray", draw=TRUE, ...) {
+#' # set draw = FALSE, must draw to grid later
+#' doc_plot(g, 
+#'          author="Joshua Poirier",
+#'          author_title="Data Scientist",
+#'          data_source="Fisher, 1936",
+#'          date=TRUE,
+#'          img_sponsor="figures/mvp-logo.png",
+#'          theme="fivethirtyeight")
+#' 
+#' # works with faceted plots too!
+#' g <- ggplot(iris, aes(Sepal.Length, Petal.Length)) +
+#'      facet_grid(. ~ Species) +
+#'      scale_color_economist() +
+#'      theme_economist()
+#' 
+#' doc_plot(g,
+#'          author="Joshua Poirier",
+#'          data_source="Fisher, 1936",
+#'          img_sponsor="figures/mvp-logo.png",
+#'          theme="economist")
+doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, img_sponsor="", sponsor="", theme="gray", ...) {
     
-    validate_args(g, author, author_title, data_source, date, img_sponsor, sponsor, draw)
+    d <- ggplot(diamonds, aes(carat, price)) + 
+        xlim(0, 2) + 
+        stat_binhex(na.rm = TRUE) + 
+        theme(aspect.ratio = 1, legend.position="right") + 
+        facet_wrap(~ color, scales = "free_x")
+    
+    validate_args(g, author, author_title, data_source, date, img_sponsor, sponsor)
     
     t <- get_theme(theme, ...)
     
@@ -169,15 +190,14 @@ doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, 
     # To save the object
     p = grid.grab()
     
-    if (draw) {
-        grid.newpage()
-        grid.draw(p)
-    }
+    grid.newpage()
+    grid.draw(p)
     
     p
 }
 
-validate_args <- function(g, author, author_title, data_source, date, img_sponsor, sponsor, draw) {
+# function to validate arguments going into 'doc_plot'
+validate_args <- function(g, author, author_title, data_source, date, img_sponsor, sponsor) {
     
     # ensure argument 'g' is a ggplot object
     if (!(class(g)[1] == "gg" & class(g)[2] == "ggplot")) {
@@ -213,10 +233,5 @@ validate_args <- function(g, author, author_title, data_source, date, img_sponso
     if (img_sponsor == "" & (class(sponsor)[1] != "character" | length(sponsor) > 1)) {
         stop(paste("Error! doc_plot argument 'sponsor' must be of length '1' and class 'character'!", class(sponsor), "given"))
     } 
-    
-    # ensure argument 'draw' is class logical
-    if (class(draw)[1] != "logical" | length(draw) > 1) {
-        stop(paste("Error! doc_plot argument 'draw' must be of length '1' and class 'logical'!", class(draw), "given."))
-    }
     
 }
