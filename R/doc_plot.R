@@ -27,12 +27,27 @@
 #' @export
 #' @examples
 #' library("ggdocumentation")
-#' 
-#' png(filename="figures/iris_fivethirtyeight.png", 
-#'     width=1100, height=800, units="px")
 #'     
 #' g <- qplot(Sepal.Length, Petal.Length, data=iris, color=Species)
-#' d <- doc_plot(g)
+#' d <- doc_plot(g,
+#'               author="Joshua Poirier",
+#'               data_source="Fisher, 1936",
+#'               sponsor="MVP")
+#' plot_grid(d)
+#' 
+#' g <- ggplot(data=iris, aes(x=Sepal.Length, y=Petal.Length, col=Species)) +
+#'      labs(title="Iris data using 'ggdocumentation'") +
+#'      scale_fivethirtyeight() +
+#'      theme_fivethirtyeight() +
+#'      geom_point()
+#'      
+#' d <- doc_plot(g, 
+#'               author="Joshua Poirier",
+#'               author_title="Data Scientist",
+#'               data_source="Fisher, 1936",
+#'               date=TRUE,
+#'               img_sponsor="figures/mvp-logo.png",
+#'               theme="fivethirtyeight")
 #' plot_grid(d)
 doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, img_sponsor="", sponsor="", theme="gray", draw=TRUE, ...) {
     
