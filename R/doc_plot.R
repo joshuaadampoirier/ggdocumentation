@@ -1,4 +1,4 @@
-#' Function to add documentation to ggplot2 plots
+#' Add documentation to ggplot2 plots
 #' 
 #' Adds documentation elements such as sponsor, author, author job title, and
 #' data sources to annotate ggplot2 plots. Documentation is one of the 
@@ -25,6 +25,30 @@
 #' @param ... Additional parameters to be passed into the get_theme() function. 
 #' @return The object to be plotted.
 #' @export
+#' @examples
+#' library("ggdocumentation")
+#' 
+#' # fivethirtyeight style plot with documentation
+#' # ###########################################################################
+#' 
+#' g <- ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, col=Species)) +
+#'   labs(title = "Iris data using 'ggdocumentation'!") +
+#'   scale_color_fivethirtyeight() +
+#'   theme_fivethirtyeight() +
+#'   geom_point()
+#' 
+#' png(filename="figures/iris_fivethirtyeight.png", 
+#'     width=1100, height=800, units="px")
+#'     
+#' d <- doc_plot(g,
+#'               author="Joshua Poirier",
+#'               data_source="Source: Fisher, 1936",
+#'               img_sponsor="figures/mvp-logo.png",
+#'               theme="fivethirtyeight",
+#'               base_size=16)
+#'               
+#' print(d)
+#' dev.off()
 doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, img_sponsor="", sponsor="", theme="gray", draw=TRUE, ...) {
     
     validate_args(g, author, author_title, data_source, date, img_sponsor, sponsor, draw)
