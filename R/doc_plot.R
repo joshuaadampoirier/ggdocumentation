@@ -24,8 +24,6 @@
 #' @return The object to be plotted.
 #' @export
 #' @examples
-#' library("grid")
-#' library("ggplot2")
 #' library("ggdocumentation")
 #' 
 #' # works with ggplot2 quick plots!

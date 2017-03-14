@@ -43,8 +43,6 @@ principles of analytical design according to Edward Tufte's "Beautiful
 Evidence".
 }
 \examples{
-library("grid")
-library("ggplot2")
 library("ggdocumentation")
 
 # works with ggplot2 quick plots!
