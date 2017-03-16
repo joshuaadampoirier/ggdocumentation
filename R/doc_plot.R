@@ -194,6 +194,9 @@ doc_plot <- function(g, author="", author_title="", data_source="", date=FALSE, 
     grid.newpage()
     grid.draw(p)
     
+    print(length(grid.newpage()))
+    print(length(grid.draw(p)))
+    
     p
 }
 
